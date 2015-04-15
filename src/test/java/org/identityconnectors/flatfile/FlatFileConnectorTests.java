@@ -45,6 +45,7 @@ import org.identityconnectors.framework.common.objects.ConnectorObject;
 import org.identityconnectors.framework.common.objects.ObjectClass;
 import org.identityconnectors.framework.common.objects.ResultsHandler;
 import org.identityconnectors.framework.common.objects.filter.Filter;
+import org.identityconnectors.framework.common.objects.filter.FilterVisitor;
 import org.identityconnectors.test.common.TestHelpers;
 import org.junit.Assert;
 import org.junit.Before;
@@ -153,6 +154,11 @@ public class FlatFileConnectorTests {
     static class NoFilter implements Filter {
         public boolean accept(ConnectorObject obj) {
             return true;
+        }
+
+        @Override
+        public <R, P> R accept(FilterVisitor<R, P> v, P p) {
+            throw new UnsupportedOperationException("Not supported yet.");
         }
     }
 
